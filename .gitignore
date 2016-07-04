@@ -1,0 +1,15 @@
+*.obj
+*.txt
+*.log
+*.sdf
+*.sln
+*.slh
+*.vcxproj
+*.vcxproj.filters
+*.tlog
+*.exp
+*.ilk
+*.lib
+*.pdb
+*.idb
+*.opendb
