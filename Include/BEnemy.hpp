@@ -15,6 +15,7 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
+	Vector2D& GetPos();
 
 private:
 	void Move();

@@ -50,7 +50,7 @@ void Game::Draw()
 {
 	stage->Draw();
 
-	if (player->GetPos().y >= 380.)
+	if (player->GetPos().y >= prcn->GetPos().y)
 	{
 		prcn->Draw();
 		player->Draw();

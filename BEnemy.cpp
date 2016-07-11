@@ -41,6 +41,11 @@ void BEnemy::Draw()
 }
 
 
+Vector2D & BEnemy::GetPos(){
+	return shadowPos;
+}
+
+
 void BEnemy::Move()
 {
 
