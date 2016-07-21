@@ -115,9 +115,28 @@ void Player::Move()
 	}
 
 	// 歩きベクター
-	if (Keyboard_Get(KEY_INPUT_RIGHT) >= 1)	vmove.x = WALK_SPEED;
-	if (Keyboard_Get(KEY_INPUT_LEFT)  >= 1)	vmove.x = -WALK_SPEED;
+	if (Keyboard_Get(KEY_INPUT_RIGHT) >= 1)
+	{
+		if (Keyboard_Get(KEY_INPUT_UP) >= 1 || Keyboard_Get(KEY_INPUT_DOWN) >= 1){
+			vmove.x = WALK_SPEED / 1.41421356237;
+		}
+		else {
+			vmove.x = WALK_SPEED;
+		}
+	}
+	
+	if (Keyboard_Get(KEY_INPUT_LEFT) >= 1)
+	{
+		if (Keyboard_Get(KEY_INPUT_UP) >= 1 || Keyboard_Get(KEY_INPUT_DOWN) >= 1) {
+			vmove.x = -WALK_SPEED / 1.41421356237;
+		}
+		else {
+			vmove.x = -WALK_SPEED;
+		}
+	}
+	
 	if (Keyboard_Get(KEY_INPUT_UP)    >= 1)	vmove.y = WALK_SPEED;
+	
 	if (Keyboard_Get(KEY_INPUT_DOWN)  >= 1)	vmove.y = -WALK_SPEED;
 
 	// 移動させる

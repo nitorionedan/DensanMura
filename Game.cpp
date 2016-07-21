@@ -11,7 +11,9 @@ Game::Game(ISceneChanger * changer)
 	, prcn(new BEnemy)
 	, stage(new Stage)
 	, mainCamera(new Camera)
+	, sound(new Sound)
 {
+	sound->Load("Sounds/sample.mp3", "sample");
 	Initialize();
 }
 
@@ -25,6 +27,7 @@ Game::~Game()
 void Game::Initialize()
 {
 	isPause = false;
+	sound->PlayMem("sample", DX_PLAYTYPE_BACK);
 }
 
 
