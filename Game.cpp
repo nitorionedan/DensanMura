@@ -10,7 +10,6 @@ Game::Game(ISceneChanger * changer)
 	, player(new Player)
 	, prcn(new BEnemy)
 	, stage(new Stage)
-	, mainCamera(new Camera)
 	, sound(new Sound)
 {
 	sound->Load("Sounds/sample.mp3", "sample");
@@ -45,7 +44,6 @@ void Game::Update()
 	stage->Update();
 	player->Update();
 	prcn->Update();
-	mainCamera->Update(player->GetPos().x, player->GetPos().y);
 }
 
 
@@ -63,8 +61,6 @@ void Game::Draw()
 		player->Draw();
 		prcn->Draw();
 	}
-
-	mainCamera->Draw();
 
 	// TEST---------------------------------------------------
 	DrawFormatString(20, 20, GetColor(255, 0, 0), "NOW_GAME_SCENE");

@@ -114,30 +114,20 @@ void Player::Move()
 		sound->PlayMem("jump", DX_PLAYTYPE_BACK);
 	}
 
+	double walkSpeed = WALK_SPEED;
+	if(Keyboard_Get(KEY_INPUT_LEFT) >= 1 || Keyboard_Get(KEY_INPUT_RIGHT) >= 1)
+	{
+		if (Keyboard_Get(KEY_INPUT_UP) >= 1 || Keyboard_Get(KEY_INPUT_DOWN) >= 1)
+		{
+			walkSpeed = walkSpeed / 1.7;
+		}
+	}
+
 	// 歩きベクター
-	if (Keyboard_Get(KEY_INPUT_RIGHT) >= 1)
-	{
-		if (Keyboard_Get(KEY_INPUT_UP) >= 1 || Keyboard_Get(KEY_INPUT_DOWN) >= 1){
-			vmove.x = WALK_SPEED / 1.41421356237;
-		}
-		else {
-			vmove.x = WALK_SPEED;
-		}
-	}
-	
-	if (Keyboard_Get(KEY_INPUT_LEFT) >= 1)
-	{
-		if (Keyboard_Get(KEY_INPUT_UP) >= 1 || Keyboard_Get(KEY_INPUT_DOWN) >= 1) {
-			vmove.x = -WALK_SPEED / 1.41421356237;
-		}
-		else {
-			vmove.x = -WALK_SPEED;
-		}
-	}
-	
-	if (Keyboard_Get(KEY_INPUT_UP)    >= 1)	vmove.y = WALK_SPEED;
-	
-	if (Keyboard_Get(KEY_INPUT_DOWN)  >= 1)	vmove.y = -WALK_SPEED;
+	if (Keyboard_Get(KEY_INPUT_RIGHT) >= 1)	vmove.x = walkSpeed;
+	if (Keyboard_Get(KEY_INPUT_LEFT) >= 1)	vmove.x = -walkSpeed;
+	if (Keyboard_Get(KEY_INPUT_UP) >= 1)	vmove.y = walkSpeed;
+	if (Keyboard_Get(KEY_INPUT_DOWN) >= 1)	vmove.y = -walkSpeed;
 
 	// 移動させる
 	if(isJump)	pos.y -= vec_jump + vmove.y;
@@ -147,5 +137,6 @@ void Player::Move()
 	shadowPos.x = std::max(std::min(shadowPos.x, FLOOR_RIGHT), FLOOR_LEFT);
 	shadowPos.y = std::max(std::min(shadowPos.y, FLOOR_BOTTOM), FLOOR_TOP);
 }
+
 
 // EOF
