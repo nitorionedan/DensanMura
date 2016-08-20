@@ -7,10 +7,10 @@
 
 //------------------------------------------------------------------------------
 
-#include "DxLib.h"
+#include <DxLib.h>
 
-#include "Keyboard.hpp"
-#include "SceneMng.hpp"
+#include "Include\Keyboard.hpp"
+#include "Include\SceneMng.hpp"
 
 #include <time.h>
 #include <memory>

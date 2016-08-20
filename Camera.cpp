@@ -1,5 +1,5 @@
-#include "Camera.hpp"
-#include "DxLib.h"
+#include "Include\Camera.hpp"
+#include <DxLib.h>
 
 
 Camera::Camera()

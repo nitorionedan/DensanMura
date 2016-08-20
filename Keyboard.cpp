@@ -7,8 +7,8 @@
 
 //------------------------------------------------------------------------------
 
-#include "DxLib.h"
-#include "Keyboard.hpp"
+#include <DxLib.h>
+#include "Include\Keyboard.hpp"
 
 
 static int m_Key[256];			  // ƒL[‚Ì“ü—Íó‘ÔŠi”[—p•Ï”

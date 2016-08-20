@@ -1,7 +1,7 @@
-#include "DxLib.h"
+#include <DxLib.h>
 
-#include "Menu.hpp"
-#include "Keyboard.hpp"
+#include "Include\Menu.hpp"
+#include "Include\Keyboard.hpp"
 
 
 

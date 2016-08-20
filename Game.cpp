@@ -1,8 +1,8 @@
-#include "DxLib.h"
+#include <DxLib.h>
 
-#include "Game.hpp"
-#include "Player.hpp"
-#include "Keyboard.hpp"
+#include "Include\Game.hpp"
+#include "Include\Player.hpp"
+#include "Include\Keyboard.hpp"
 
 
 Game::Game(ISceneChanger * changer)
@@ -10,7 +10,6 @@ Game::Game(ISceneChanger * changer)
 	, player(new Player)
 	, prcn(new BEnemy)
 	, stage(new Stage)
-	, mainCamera(new Camera)
 {
 	Initialize();
 }
@@ -42,7 +41,6 @@ void Game::Update()
 	stage->Update();
 	player->Update();
 	prcn->Update();
-	mainCamera->Update(player->GetPos().x, player->GetPos().y);
 }
 
 
@@ -60,8 +58,6 @@ void Game::Draw()
 		player->Draw();
 		prcn->Draw();
 	}
-
-	mainCamera->Draw();
 
 	// TEST---------------------------------------------------
 	DrawFormatString(20, 20, GetColor(255, 0, 0), "NOW_GAME_SCENE");

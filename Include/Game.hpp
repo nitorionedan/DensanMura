@@ -9,7 +9,6 @@
 #include "Stage.hpp"
 #include "BEnemy.hpp"
 #include "Image.hpp"
-#include "Camera.hpp"
 
 #include <memory>
 
@@ -30,7 +29,6 @@ private:
 	std::shared_ptr<Player> player;
 	std::shared_ptr<BEnemy> prcn;
 	std::shared_ptr<Stage> stage;
-	std::shared_ptr<Camera> mainCamera;
 	bool isPause;
 };
 

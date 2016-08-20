@@ -1,7 +1,7 @@
-#include "DxLib.h"
+#include <DxLib.h>
 
-#include "Player.hpp"
-#include "Keyboard.hpp"
+#include "Include\Player.hpp"
+#include "Include\Keyboard.hpp"
 
 #include <algorithm>
 

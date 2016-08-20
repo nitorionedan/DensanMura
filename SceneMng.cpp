@@ -1,10 +1,10 @@
-#include "DxLib.h"
+#include <DxLib.h>
 
-#include "SceneMng.hpp"
-#include "Keyboard.hpp"
+#include "Include\SceneMng.hpp"
+#include "Include\Keyboard.hpp"
 
-#include "Game.hpp"
-#include "Menu.hpp"
+#include "Include\Game.hpp"
+#include "Include\Menu.hpp"
 
 
 SceneMng::SceneMng() : mNextScene(eScene_None) {		// Ÿ‚ÌƒV[ƒ“ŠÇ—•Ï”

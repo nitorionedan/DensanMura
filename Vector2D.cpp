@@ -1,5 +1,5 @@
-#include "DxLib.h"
-#include "Vector2D.hpp"
+#include <DxLib.h>
+#include "Include\Vector2D.hpp"
 
 #include <algorithm>
 #include <cassert>

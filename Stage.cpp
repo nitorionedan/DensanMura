@@ -1,6 +1,6 @@
-#include "Stage.hpp"
-#include "DxLib.h"
-#include "Keyboard.hpp"
+#include "Include\Stage.hpp"
+#include <DxLib.h>
+#include "Include\Keyboard.hpp"
 
 
 Stage::Stage()
