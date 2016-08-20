@@ -9,7 +9,7 @@
 #include "Stage.hpp"
 #include "BEnemy.hpp"
 #include "Image.hpp"
-
+#include "EventMessage.hpp"
 #include <memory>
 
 
@@ -29,6 +29,8 @@ private:
 	std::shared_ptr<Player> player;
 	std::shared_ptr<BEnemy> prcn;
 	std::shared_ptr<Stage> stage;
+	std::shared_ptr<EventMessage> mEveMsg;
+	int fh_test;
 	bool isPause;
 };
 

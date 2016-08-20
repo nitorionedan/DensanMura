@@ -1,5 +1,4 @@
 #include <DxLib.h>
-
 #include "Include\Game.hpp"
 #include "Include\Player.hpp"
 #include "Include\Keyboard.hpp"
@@ -10,6 +9,7 @@ Game::Game(ISceneChanger * changer)
 	, player(new Player)
 	, prcn(new BEnemy)
 	, stage(new Stage)
+	, mEveMsg(new EventMessage)
 {
 	Initialize();
 }
@@ -35,12 +35,14 @@ void Game::Finalize()
 void Game::Update()
 {
 	if (Keyboard_Get(KEY_INPUT_Q) == 1)	isPause = !isPause;
+	if (Keyboard_Get(KEY_INPUT_H) == 1)	mEveMsg->SendMsg("Hello");
 
 	if (isPause)	return;
 
 	stage->Update();
 	player->Update();
 	prcn->Update();
+	mEveMsg->Update();
 }
 
 
@@ -59,11 +61,11 @@ void Game::Draw()
 		prcn->Draw();
 	}
 
+	mEveMsg->Draw();
+
 	// TEST---------------------------------------------------
-	DrawFormatString(20, 20, GetColor(255, 0, 0), "NOW_GAME_SCENE");
-	DrawFormatString(20, 40, GetColor(0, 0, 0), "JUMP	: [C]");
-	DrawFormatString(20, 60, GetColor(0, 0, 0), "WALK	: [Å©][Å®]");
+	//DrawFormatString(20, 20, GetColor(255, 0, 0), "NOW_GAME_SCENE");
+	//DrawFormatString(20, 40, GetColor(0, 0, 0), "JUMP	: [C]");
+	DrawFormatString(20, 60, GetColor(0, 0, 0), "HELLO	: [H]");
 	if (isPause)	DrawFormatString(320, 240, GetColor(255, 0, 0), "É|Å[ÉYíÜ");
 }
-
-// EOF
