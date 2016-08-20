@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <string>
 #include <vector>
 #include <memory>
@@ -24,9 +23,10 @@ class EventMessage
 		int const ShowTime = 180;
 
 		std::string msg;
-		int time;
-		unsigned int counter;
-		bool isAlive;
+		int time;				// 経過時間
+		int x, y;				// 座標
+		unsigned int counter;	// 透過カウンター
+		bool isAlive;			// 生きているかどうか 
 	};
 
 public:

@@ -1,4 +1,4 @@
-#include "EventMessage.hpp"
+#include "Include\EventMessage.hpp"
 #include <DxLib.h>
 #include <algorithm>
 #undef max
@@ -52,7 +52,7 @@ void EventMessage::Draw()
 	int i = 0;
 	for (auto itr = std::begin(mMsg); itr != std::end(mMsg); itr++)
 	{
-		(*itr)->Draw(60, 40 - (10 * i), fh_msg);
+		(*itr)->Draw(60, 40 + (10 * i), fh_msg);
 		i++;
 	}
 }
@@ -60,11 +60,8 @@ void EventMessage::Draw()
 
 void EventMessage::SendMsg(std::string msg)
 {
-	mMsg.emplace(std::begin(mMsg), new Message(msg));
+	mMsg.emplace(std::end(mMsg), new Message(msg));
 }
-
-
-
 
 
 /*-----------------------------------------------
