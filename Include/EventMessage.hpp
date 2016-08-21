@@ -18,9 +18,9 @@ class EventMessage
 			return isAlive;
 		}
 		int x, y;				// ç¿ïW
+		unsigned int color;
 
 	private:
-		static unsigned int const White;
 		unsigned int const ChangeSpeed = 1U;
 		int const ShowTime = 180;
 
@@ -34,12 +34,14 @@ public:
 	EventMessage();
 	~EventMessage();
 	void Update();
-	void Draw();
+	void Draw(int x, int y);
 	void SendMsg(std::string msg);
+	void SendMsg(int x, int y, unsigned int ColorCode, std::string msg);
 
 private:
 	void Initialize();
 	
 	int fh_msg;
 	std::vector<std::shared_ptr<Message>> mMsg;
+	std::vector<std::shared_ptr<Message>> mMsg2;
 };

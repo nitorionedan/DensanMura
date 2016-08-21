@@ -4,7 +4,9 @@
 #undef max
 #undef min
 
-unsigned int const EventMessage::Message::White = GetColor(255, 255, 255);
+
+static unsigned int const White = GetColor(255, 255, 255);
+
 
 /*-----------------------------------------------
 イベントメッセージ管理
@@ -29,8 +31,7 @@ void EventMessage::Initialize()
 
 void EventMessage::Update()
 {
-	if (mMsg.empty())	return;
-
+	/* 左上のメッセージ */
 	for (auto itr : mMsg)
 	{
 		itr->Update();
@@ -41,28 +42,45 @@ void EventMessage::Update()
 			break;
 		}
 	}
+
+	/* 任意の座標のメッセージ */
+	for (auto itr : mMsg2)
+	{
+		itr->Update();
+
+		if (itr->GetIsAlive() == false)
+		{
+			mMsg2.erase(std::remove(std::begin(mMsg2), std::end(mMsg2), itr), std::end(mMsg2));
+			break;
+		}
+	}
 }
 
 
-void EventMessage::Draw()
+void EventMessage::Draw(int x, int y)
 {
-	if (mMsg.empty())	return;
-
+	/* 左上のメッセージ */
 	int i = 0;
 	for (auto itr = std::begin(mMsg); itr != std::end(mMsg); itr++)
 	{
 		/* プレイヤーの邪魔にならにような位置に調整する */
-		int x, y;
-		x = 40;
-		y = 20 + (14 * i);
+		int adjX, adjY;
+		adjX = 40;
+		adjY = 20 + (14 * i);
 		if (i % 6 == 0 || i >= 6)
 		{
-			x += 40 * (i / 6);
-			y -= 84 * (i / 6);
+			adjX += 40 * (i / 6);
+			adjY -= 84 * (i / 6);
 		}
 
-		(*itr)->Draw(x, y, fh_msg);
+		(*itr)->Draw(adjX, adjY, fh_msg);
 		i++;
+	}
+
+	/* 任意の座標のメッセージ */
+	for(auto itr = std::begin(mMsg2); itr != std::end(mMsg2); itr++)
+	{
+		(*itr)->Draw((*itr)->x + x, (*itr)->y + y, fh_msg);
 	}
 }
 
@@ -71,8 +89,21 @@ void EventMessage::SendMsg(std::string msg)
 {
 	mMsg.emplace(std::end(mMsg), new Message(msg));
 
+	// 今生成したイベントメッセージのセッティング
 	mMsg[mMsg.size() - 1]->x = 60;
 	mMsg[mMsg.size() - 1]->y = 40 + (mMsg.size() * 14);
+	mMsg[mMsg.size() - 1]->color = White;
+}
+
+
+void EventMessage::SendMsg(int x, int y, unsigned int ColorCode, std::string msg)
+{
+	mMsg2.emplace(std::end(mMsg2), new Message(msg));
+
+	// 今生成したイベントメッセージのセッティング
+	mMsg2[mMsg2.size() - 1]->x = x;
+	mMsg2[mMsg2.size() - 1]->y = y;
+	mMsg2[mMsg2.size() - 1]->color = ColorCode;
 }
 
 
@@ -101,7 +132,7 @@ void EventMessage::Message::Update()
 void EventMessage::Message::Draw(const int & FontHandle)
 {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, counter);
-	DrawFormatStringToHandle(this->x, this->y, White, FontHandle, msg.c_str());
+	DrawFormatStringToHandle(x, y, color, FontHandle, msg.c_str());
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
@@ -109,6 +140,6 @@ void EventMessage::Message::Draw(const int & FontHandle)
 void EventMessage::Message::Draw(int x, int y, const int& FontHandle)
 {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, counter);
-	DrawFormatStringToHandle(x, y, White, FontHandle, msg.c_str());
+	DrawFormatStringToHandle(x, y, color, FontHandle, msg.c_str());
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
