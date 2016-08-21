@@ -12,10 +12,12 @@ class EventMessage
 	public:
 		explicit Message(std::string msg);
 		void Update();
+		void Draw(const int& FontHandle);
 		void Draw(int x, int y, const int& FontHandle);
 		inline bool GetIsAlive() {
 			return isAlive;
 		}
+		int x, y;				// 座標
 
 	private:
 		static unsigned int const White;
@@ -24,7 +26,6 @@ class EventMessage
 
 		std::string msg;
 		int time;				// 経過時間
-		int x, y;				// 座標
 		unsigned int counter;	// 透過カウンター
 		bool isAlive;			// 生きているかどうか 
 	};

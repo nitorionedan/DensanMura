@@ -6,13 +6,12 @@
 
 unsigned int const EventMessage::Message::White = GetColor(255, 255, 255);
 
-
 /*-----------------------------------------------
 イベントメッセージ管理
 -----------------------------------------------*/
 EventMessage::EventMessage()
 {
-	fh_msg = LoadFontDataToHandle("FontData.dft", 1);
+	fh_msg = LoadFontDataToHandle("Resource/FontData.dft", 1);
 	Initialize();
 }
 
@@ -52,7 +51,17 @@ void EventMessage::Draw()
 	int i = 0;
 	for (auto itr = std::begin(mMsg); itr != std::end(mMsg); itr++)
 	{
-		(*itr)->Draw(60, 40 + (10 * i), fh_msg);
+		/* プレイヤーの邪魔にならにような位置に調整する */
+		int x, y;
+		x = 40;
+		y = 20 + (14 * i);
+		if (i % 6 == 0 || i >= 6)
+		{
+			x += 40 * (i / 6);
+			y -= 84 * (i / 6);
+		}
+
+		(*itr)->Draw(x, y, fh_msg);
 		i++;
 	}
 }
@@ -61,6 +70,9 @@ void EventMessage::Draw()
 void EventMessage::SendMsg(std::string msg)
 {
 	mMsg.emplace(std::end(mMsg), new Message(msg));
+
+	mMsg[mMsg.size() - 1]->x = 60;
+	mMsg[mMsg.size() - 1]->y = 40 + (mMsg.size() * 14);
 }
 
 
@@ -83,6 +95,14 @@ void EventMessage::Message::Update()
 
 	counter = std::max(counter, 0U);
 	if (time > ShowTime)	isAlive = false;
+}
+
+
+void EventMessage::Message::Draw(const int & FontHandle)
+{
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, counter);
+	DrawFormatStringToHandle(this->x, this->y, White, FontHandle, msg.c_str());
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 
