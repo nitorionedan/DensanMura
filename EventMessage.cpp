@@ -1,6 +1,7 @@
 #include "Include\EventMessage.hpp"
 #include <DxLib.h>
 #include <algorithm>
+#include <cassert>
 #undef max
 #undef min
 
@@ -14,6 +15,8 @@ static unsigned int const White = GetColor(255, 255, 255);
 EventMessage::EventMessage()
 {
 	fh_msg = LoadFontDataToHandle("Resource/FontData.dft", 1);
+	assert(fh_msg != -1);
+
 	Initialize();
 }
 
@@ -32,25 +35,25 @@ void EventMessage::Initialize()
 void EventMessage::Update()
 {
 	/* 左上のメッセージ */
-	for (auto itr : mMsg)
+	for (auto ary : mMsg)
 	{
-		itr->Update();
+		ary->Update();
 
-		if (itr->GetIsAlive() == false)
+		if (ary->GetIsAlive() == false)
 		{
-			mMsg.erase(std::remove(std::begin(mMsg), std::end(mMsg), itr), std::end(mMsg));
+			Delete(mMsg, ary);
 			break;
 		}
 	}
 
 	/* 任意の座標のメッセージ */
-	for (auto itr : mMsg2)
+	for (auto ary : mMsg2)
 	{
-		itr->Update();
+		ary->Update();
 
-		if (itr->GetIsAlive() == false)
+		if (ary->GetIsAlive() == false)
 		{
-			mMsg2.erase(std::remove(std::begin(mMsg2), std::end(mMsg2), itr), std::end(mMsg2));
+			Delete(mMsg2, ary);
 			break;
 		}
 	}
@@ -105,6 +108,14 @@ void EventMessage::SendMsg(int x, int y, unsigned int ColorCode, std::string msg
 	mMsg2[mMsg2.size() - 1]->y = y;
 	mMsg2[mMsg2.size() - 1]->color = ColorCode;
 }
+
+
+template<class T, class U>
+void EventMessage::Delete(std::vector<T>& vec, U val)
+{
+	vec.erase(std::remove(std::begin(vec), std::end(vec), val), std::end(vec));
+}
+
 
 
 /*-----------------------------------------------
