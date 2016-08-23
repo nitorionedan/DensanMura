@@ -40,8 +40,8 @@ public:
 
 private:
 	void Initialize();
-	template<class T, class U>
-	void Delete(std::vector<T>& vec, U val);
+	template<class T>
+	void Delete(std::vector<T>& vec, T var);
 	
 	int fh_msg;
 	std::vector<std::shared_ptr<Message>> mMsg;
