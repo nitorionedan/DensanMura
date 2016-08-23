@@ -39,12 +39,16 @@ void Game::Finalize()
 void Game::Update()
 {
 	if (Keyboard_Get(KEY_INPUT_Q) == 1)	isPause = !isPause;
-	if (Keyboard_Get(KEY_INPUT_H) == 1)
+	if (Keyboard_Get(KEY_INPUT_F1) == 1)
 	{
 		int dmg = GetRand(100);
 
 		mEveMsg->SendMsg(GetRand(60) - 30, GetRand(60) - 60,
 			GetColor(255, 0, 0), std::to_string(dmg));
+	}
+	if (Keyboard_Get(KEY_INPUT_H) == 1)
+	{
+		mEveMsg->SendMsg("Hello");
 	}
 	
 	if (isPause)	return;

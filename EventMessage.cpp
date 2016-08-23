@@ -14,6 +14,8 @@ static unsigned int const White = GetColor(255, 255, 255);
 -----------------------------------------------*/
 EventMessage::EventMessage()
 {
+	mMsg.reserve(100);
+	mMsg2.reserve(100);
 	fh_msg = LoadFontDataToHandle("Resource/FontData.dft", 1);
 	assert(fh_msg != -1);
 
@@ -90,7 +92,7 @@ void EventMessage::Draw(int x, int y)
 
 void EventMessage::SendMsg(std::string msg)
 {
-	mMsg.emplace(std::end(mMsg), new Message(msg));
+	mMsg.emplace_back( new Message(msg) );
 
 	// 今生成したイベントメッセージのセッティング
 	mMsg[mMsg.size() - 1]->x = 60;
@@ -101,7 +103,7 @@ void EventMessage::SendMsg(std::string msg)
 
 void EventMessage::SendMsg(int x, int y, unsigned int ColorCode, std::string msg)
 {
-	mMsg2.emplace(std::end(mMsg2), new Message(msg));
+	mMsg2.emplace_back(new Message(msg));
 
 	// 今生成したイベントメッセージのセッティング
 	mMsg2[mMsg2.size() - 1]->x = x;
