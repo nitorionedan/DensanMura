@@ -1,18 +1,20 @@
-#ifndef DEF_ZAKO_EMEMY_HPP
-#define DEF_ZAKO_ENEMY_HPP
+#pragma once
+#include "Vector2D.hpp"
 
 
-class ZakoEnemy
+class ZakoEnemy 
 {
 public:
-	ZakoEnemy();
-	~ZakoEnemy();
-	void Update();
-	void Draw();
+	ZakoEnemy(){}
+	virtual ~ZakoEnemy(){}
+	virtual void Update() = 0;
+	virtual void Draw() = 0;
+	virtual Vector2D& GetPos() = 0;
+	virtual bool HitCheck() = 0; // プレイヤーの攻撃との当たり判定
 
-private:
-	void Move();
+protected:
+	virtual void Initialize() {}
+
+	Vector2D pos;
+	bool isDead; // 死んだか？
 };
-
-
-#endif

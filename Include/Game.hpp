@@ -10,6 +10,7 @@
 #include "BEnemy.hpp"
 #include "Image.hpp"
 #include "EventMessage.hpp"
+#include "ZakoEnemyTask.hpp"
 #include <memory>
 
 
@@ -30,6 +31,7 @@ private:
 	std::shared_ptr<BEnemy> prcn;
 	std::shared_ptr<Stage> stage;
 	std::shared_ptr<EventMessage> mEveMsg;
+	std::unique_ptr<ZakoEnemyTask> mZakoTask;
 	int fh_test;
 	bool isPause;
 };

@@ -17,7 +17,7 @@ EventMessage::EventMessage()
 	mMsg.reserve(100);  // 配列数を予約
 	mMsg2.reserve(100); // 同上
 	fh_msg = LoadFontDataToHandle("Resource/FontData.dft", 1);
-	assert(fh_msg != -1 && "読み込み失敗：フォント");
+	assert(fh_msg != -1 && "EventMessage::EventMessage()");
 
 	Initialize();
 }

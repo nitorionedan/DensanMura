@@ -14,6 +14,7 @@ Game::Game(ISceneChanger * changer)
 	, prcn(new BEnemy)
 	, stage(new Stage)
 	, mEveMsg(new EventMessage)
+	, mZakoTask(new ZakoEnemyTask(eZako::Sample))
 {
 	Initialize();
 }
@@ -53,17 +54,23 @@ void Game::Update()
 	
 	if (isPause)	return;
 
+	/* キャラ */
 	stage->Update();
 	player->Update();
 	prcn->Update();
+	mZakoTask->Update();
+
+	/* ステータス */
 	mEveMsg->Update();
 }
 
 
 void Game::Draw()
 {
+	/* 背景 */
 	stage->Draw();
 
+	/* キャラ */
 	if (player->GetPos().y >= 380.)
 	{
 		prcn->Draw();
@@ -75,6 +82,9 @@ void Game::Draw()
 		prcn->Draw();
 	}
 
+	mZakoTask->Draw();
+
+	/* ステータス */
 	mEveMsg->Draw(static_cast<int>(player->GetPos().x), static_cast<int>(player->GetPos().y));
 
 	// TEST---------------------------------------------------

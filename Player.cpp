@@ -85,7 +85,7 @@ Vector2D& Player::GetPos(){
 
 void Player::Move()
 {
-	const bool& IS_GROUND = (pos.y > shadowPos.y - 50 && isJump);
+	const bool& IS_GROUND = (pos.y >= shadowPos.y - 50 && isJump);
 
 	// ‚Æ‚è‚ ‚¦‚¸
 	vmove.SetZero();
