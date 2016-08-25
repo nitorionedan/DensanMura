@@ -10,7 +10,7 @@
 class Image
 {
 public:
-	Image();
+	Image() : count(0) {}
 	~Image();
 
 	int Load(const TCHAR* FNAME, std::string key);

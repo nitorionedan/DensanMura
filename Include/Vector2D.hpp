@@ -19,7 +19,32 @@ public:
 		const double& X1, const double& Y1, const double& X2, const double& Y2);
 	static bool RectanglePointCollision(const double& MyX, const double& MyY, const double& Width, const double& Height, const double& TarX, const double& TarY);
 
-	double x, y;
+	// @brief				ベクトルを生成
+	// @param[in]	x, y	座標
+	// @return				生成したベクトル
+	Vector2D& GetVec(double x, double y);
 
-private:
+	// @brief				自分→相手のベクトルを生成
+	// @param[in]	x1, y1	自分の座標
+	// @param[in]	x2, y2	相手の座標
+	// @return				生成したベクトル
+	Vector2D& GetVec2(double x1, double y1, double x2, double y2);
+
+	/* operators */
+	Vector2D& Vector2D::operator=(const Vector2D& obj);
+	Vector2D& operator+=(const Vector2D& obj);
+	Vector2D& operator-=(const Vector2D& obj);
+	Vector2D& operator*=(const Vector2D& obj);
+	Vector2D& operator/=(const Vector2D& obj);
+	Vector2D operator+();
+	Vector2D operator-();
+
+	double x, y;
 };
+
+
+Vector2D operator+(const Vector2D& v1, const Vector2D& v2);
+
+Vector2D operator-(const Vector2D& v1, const Vector2D& v2);
+
+// EOF

@@ -1,9 +1,6 @@
 #include "Include\Image.hpp"
 
 
-Image::Image()	: count(0){}
-
-
 Image::~Image()
 {
 	if (count != 0)	for (auto& gh : this->gh) DeleteGraph(gh);
@@ -23,7 +20,7 @@ int Image::Load(const TCHAR * FNAME, std::string key)
 			msg += " is not found.";
 			throw msg;
 		}
-		gh.push_back(handle);
+		gh.emplace_back(handle);
 		count++;
 	}
 	catch(std::string e)

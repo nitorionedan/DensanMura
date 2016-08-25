@@ -1,5 +1,4 @@
-#include <DxLib.h>
-#include "Include\Vector2D.hpp"
+#include "Include/Vector2D.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -44,14 +43,11 @@ void Vector2D::Fill(const double & XY){
 
 void Vector2D::BorderStop(double* pos, const double MIN, const double MAX)
 {
-	if(MAX <= MIN)
-	{
-		printfDx("§ŒÀ’lƒGƒ‰[\n");
-		return;
-	}
+	assert(MAX > MIN && "Vector2D::BorderStop()");
 
 	*pos = std::min(MAX, std::max(MIN, *pos));
 }
+
 
 void Vector2D::AddVecAngele(double * PosX, double * PosY, const double& angle, const double& force)
 {
@@ -91,3 +87,94 @@ bool Vector2D::RectanglePointCollision(const double & MyX, const double & MyY, c
 
 	return isHit;
 }
+
+
+Vector2D & Vector2D::GetVec(double x, double y)
+{
+	Vector2D vec(x, y);
+	return vec;
+}
+
+
+Vector2D & Vector2D::GetVec2(double x1, double y1, double x2, double y2)
+{
+	double X = x2 - x1;
+	double Y = y2 - y1;
+
+	Vector2D vec(X, Y);
+	return vec;
+
+}
+
+
+Vector2D& Vector2D::operator=(const Vector2D& obj)
+{
+	this->x = obj.x;
+	this->y = obj.y;
+	return *this;
+}
+
+
+Vector2D Vector2D::operator+()
+{
+	return *this;
+}
+
+
+Vector2D Vector2D::operator-()
+{
+	return Vector2D(-x, -y);
+}
+
+
+Vector2D& Vector2D::operator+=(const Vector2D& obj)
+{
+	this->x += obj.x;
+	this->y += obj.y;
+	return *this;
+}
+
+
+Vector2D& Vector2D::operator-=(const Vector2D& obj)
+{
+	this->x -= obj.x;
+	this->y -= obj.y;
+	return *this;
+}
+
+
+Vector2D& Vector2D::operator*=(const Vector2D& obj)
+{
+	this->x *= obj.x;
+	this->y *= obj.y;
+	return *this;
+}
+
+
+Vector2D& Vector2D::operator/=(const Vector2D& obj)
+{
+	this->x /= obj.x;
+	this->y /= obj.y;
+	return *this;
+}
+
+
+Vector2D operator+(const Vector2D& v1, const Vector2D& v2)
+{
+	Vector2D tmp;
+	tmp.x = v1.x + v2.x;
+	tmp.y = v1.y + v2.y;
+	return tmp;
+}
+
+
+Vector2D operator-(const Vector2D& v1, const Vector2D& v2)
+{
+	Vector2D tmp;
+	tmp.x = v1.x - v2.x;
+	tmp.y = v1.y - v2.y;
+	return tmp;
+}
+
+
+// EOF

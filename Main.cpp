@@ -89,7 +89,7 @@ void Initialize()
 	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);											// 画面モード変更後、素材メモリをリセットしない
 	SetWaitVSyncFlag(FALSE);																	// 垂直同期信号を待たない
 	FrameStartTime = GetNowCount();																// 開始時間を設定
-	SRand((unsigned)time(NULL));																// 乱数シード
+	SRand((unsigned)time(NULL));																// 乱数シード(糞ver)
 }
 
 

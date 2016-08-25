@@ -15,6 +15,12 @@ public:
 protected:
 	virtual void Initialize() {}
 
-	Vector2D pos;
-	bool isDead; // 死んだか？
+	/* 移動限界値 */
+	static const int BD_TOP = 208;
+	static const int BD_BOTTOM = 472;
+	static const int BD_LEFT = 20;
+	static const int BD_RIGHT = 620;
+
+	Vector2D pos;	// 座標
+	bool isDead;	// 死んだか？
 };

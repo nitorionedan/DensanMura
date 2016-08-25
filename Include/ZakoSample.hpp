@@ -20,6 +20,10 @@ private:
 	void Initialize() override;
 	bool HitCheck() override;	// ƒvƒŒƒCƒ„[‚ÌUŒ‚‚Æ‚Ì“–‚½‚è”»’è
 	void Move();				// “®‚«‚Ì‚İ
+	void Boundary(double* x, double* y);
 
 	std::unique_ptr<Image> img;
+	Vector2D shadowPos, vmove;
+	int gh[3];
+	int time;
 };
