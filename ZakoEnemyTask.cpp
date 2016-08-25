@@ -2,6 +2,7 @@
 #include "Include/ZakoSample.hpp"
 #include <cassert>
 
+
 ZakoEnemyTask::ZakoEnemyTask(eZako type)
 {
 	switch (type)

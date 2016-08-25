@@ -12,12 +12,25 @@ Image::~Image()
 
 int Image::Load(const TCHAR * FNAME, std::string key)
 {
-	this->key.push_back(key);
-
-	gh.push_back( LoadGraph(FNAME) );
-
-	count++;
+	try
+	{
+		this->key.push_back(key);
+		const int& handle = LoadGraph(FNAME);
 	
+		/* exception check */
+		if (handle == -1) {
+			std::string msg(FNAME);
+			msg += " is not found.";
+			throw msg;
+		}
+		gh.push_back(handle);
+		count++;
+	}
+	catch(std::string e)
+	{
+		MessageBox(NULL, e.c_str(), "error : Image::Load()", MB_OK);
+		return -1;
+	}
 	return 0;
 }
 
@@ -44,9 +57,7 @@ void Image::List()
 int Image::Draw(const int& X, const int& Y, std::string key, int TransFlag)
 {
 	if (count == 0)	return -1;
-
 	const int& Hdl = GetHandle(key);
-
 	return DrawGraph(X, Y, Hdl, TransFlag);
 }
 
@@ -54,21 +65,15 @@ int Image::Draw(const int& X, const int& Y, std::string key, int TransFlag)
 int Image::DrawRota(const int& X, const int& Y, const double& ExRate, const double& Angle, std::string key, int TransFlag, int TurnFlag)
 {
 	if (count == 0)	return -1;
-
 	const int& Hdl = GetHandle(key);
-
 	return DrawRotaGraph(X, Y, ExRate, Angle, Hdl, TransFlag, TurnFlag);
-
-	return 0;
 }
 
 
 int Image::DrawRect(const int & DestX, const int & DestY, const int & SrcX, const int & SrcY, const int & Width, const int & Height, std::string key, const int & TransFlag, const int & TurnFlag)
 {
 	if (count == 0)	return -1;
-
 	const int& Hdl = GetHandle(key);
-
 	return DrawRectGraph(DestX, DestY, SrcX, SrcY, Width, Height, Hdl, TransFlag, TurnFlag);
 }
 
@@ -76,9 +81,7 @@ int Image::DrawRect(const int & DestX, const int & DestY, const int & SrcX, cons
 int Image::GetSize(std::string key, int * width, int * height)
 {
 	if (count == 0)	return -1;
-
 	const int& Hdl = GetHandle(key);
-
 	return GetGraphSize(Hdl, width, height);;
 }
 
@@ -90,11 +93,8 @@ int Image::GetHandle(std::string key)
 		if (this->key[i] != key)	continue;
 		return this->gh[i];
 	}
-
 	std::string warning = key + "‚Æ‚¢‚¤ƒL[‚ªŒ©“–‚½‚è‚Ü‚¹‚ñB";
-
 	MessageBox(NULL, warning.c_str(), "NOT FOUND", MB_OK);
-	
 	return -1;
 }
 

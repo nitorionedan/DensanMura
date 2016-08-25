@@ -73,13 +73,13 @@ void Game::Draw()
 	/* ƒLƒƒƒ‰ */
 	if (player->GetPos().y >= 380.)
 	{
-		prcn->Draw();
+		//prcn->Draw();
 		player->Draw();
 	}
 	else
 	{
 		player->Draw();
-		prcn->Draw();
+		//prcn->Draw();
 	}
 
 	mZakoTask->Draw();

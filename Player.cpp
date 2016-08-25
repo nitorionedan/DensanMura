@@ -73,7 +73,7 @@ void Player::Draw()
 #ifdef _DEBUG
 	// ÉZÉäÉt
 	//if(isJump)	DrawFormatString(pos.x + 10., pos.y - 40., GetColor(0, 0, 0), "îÚÇÒÇ≈Ç‹Å[Ç∑");
-	DrawFormatString(20, 80, GetColor(0, 0, 0), "Player : x(%lf), y(%lf)", shadowPos.x, shadowPos.y);
+	//DrawFormatString(20, 80, GetColor(0, 0, 0), "Player : x(%lf), y(%lf)", shadowPos.x, shadowPos.y);
 #endif // _DEBUG
 }
 
