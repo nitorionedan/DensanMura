@@ -16,13 +16,13 @@ public:
 	inline ~ZakoEnemyTask(){
 		delete mZako;
 	}
-	inline void Update() {
-		mZako->Update();
+	inline void Update(const Player& player) {
+		mZako->Update(player);
 	}
 	inline void Draw() {
 		mZako->Draw();
 	}
-	inline Vector2D& GetPos() {
+	inline Vector2D& GetPos() const {
 		return mZako->GetPos();
 	}
 

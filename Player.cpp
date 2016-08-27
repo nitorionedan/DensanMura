@@ -78,7 +78,7 @@ void Player::Draw()
 }
 
 
-Vector2D& Player::GetPos(){
+const Vector2D& Player::GetPos() const {
 	return shadowPos;
 }
 

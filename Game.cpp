@@ -58,7 +58,7 @@ void Game::Update()
 	stage->Update();
 	player->Update();
 	prcn->Update();
-	mZakoTask->Update();
+	mZakoTask->Update(*player);
 
 	/* ステータス */
 	mEveMsg->Update();

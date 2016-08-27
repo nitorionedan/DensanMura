@@ -25,10 +25,24 @@ public:
 	Vector2D& GetVec(double x, double y);
 
 	// @brief				自分→相手のベクトルを生成
-	// @param[in]	x1, y1	自分の座標
-	// @param[in]	x2, y2	相手の座標
+	// @param[in]	vec1	自分
+	// @param[in]	vec2	相手
 	// @return				生成したベクトル
-	Vector2D& GetVec2(double x1, double y1, double x2, double y2);
+	static Vector2D& GetVec2(const Vector2D& vec1, const Vector2D& vec2);
+
+	Vector2D& Normalize();
+
+	double Length() const;
+
+	// @brief				内積を計算
+	// @param[in]	other	相手のベクトル
+	// @return				内積
+	double DotProduct(const Vector2D& other) const;
+
+	// @brief				外積を計算
+	// @param[in]	other	相手のベクトル
+	// @return				外積
+	double CrossProduct(const Vector2D& other) const;
 
 	/* operators */
 	Vector2D& Vector2D::operator=(const Vector2D& obj);

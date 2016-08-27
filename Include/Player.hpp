@@ -18,7 +18,7 @@ public:
 	~Player();
 	void Update() override;
 	void Draw() override;
-	Vector2D& GetPos();
+	const Vector2D& GetPos() const;
 
 private:
 	const double FLOOR_TOP		= 208.;

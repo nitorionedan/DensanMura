@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector2D.hpp"
+#include "Player.hpp"
 
 
 class ZakoEnemy 
@@ -7,7 +8,7 @@ class ZakoEnemy
 public:
 	ZakoEnemy(){}
 	virtual ~ZakoEnemy(){}
-	virtual void Update() = 0;
+	virtual void Update(const Player& player) = 0;
 	virtual void Draw() = 0;
 	virtual Vector2D& GetPos() = 0;
 	virtual bool HitCheck() = 0; // ƒvƒŒƒCƒ„[‚ÌUŒ‚‚Æ‚Ì“–‚½‚è”»’è

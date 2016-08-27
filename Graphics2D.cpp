@@ -9,10 +9,8 @@
 
 //------------------------------------------------------------------------------
 
-#include "DxLib.h"
-
 #include "Include/Graphics2D.hpp"
-
+#include <DxLib.h>
 #include <cmath>
 #include <algorithm>
 

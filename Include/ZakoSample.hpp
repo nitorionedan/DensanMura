@@ -10,7 +10,7 @@ class ZakoSample : public ZakoEnemy
 public:
 	ZakoSample();
 	~ZakoSample();
-	void Update() override;
+	void Update(const Player& player) override;
 	void Draw() override;
 	Vector2D& GetPos() override {
 		return pos;
@@ -26,4 +26,7 @@ private:
 	Vector2D shadowPos, vmove;
 	int gh[3];
 	int time;
+	double walkSpeed;
+	double jumpPower;
+	bool isArrived;
 };

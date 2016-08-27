@@ -91,19 +91,40 @@ bool Vector2D::RectanglePointCollision(const double & MyX, const double & MyY, c
 
 Vector2D & Vector2D::GetVec(double x, double y)
 {
-	Vector2D vec(x, y);
-	return vec;
+	return  Vector2D(x, y);
 }
 
 
-Vector2D & Vector2D::GetVec2(double x1, double y1, double x2, double y2)
+Vector2D & Vector2D::GetVec2(const Vector2D & vec1, const Vector2D & vec2)
 {
-	double X = x2 - x1;
-	double Y = y2 - y1;
+	double x = vec2.x - vec1.x;
+	double y = vec2.y - vec1.y;
+	return Vector2D(x, y);
+}
 
-	Vector2D vec(X, Y);
-	return vec;
 
+Vector2D & Vector2D::Normalize()
+{
+	const double& len = Length();
+	if (len < FLT_EPSILON)
+		return Vector2D(0., 0.);
+	x /= len;
+	y /= len;
+	return *this;
+}
+
+double Vector2D::Length() const{
+	return std::sqrt(DotProduct(*this));
+}
+
+
+double Vector2D::DotProduct(const Vector2D & other) const {
+	return (x * other.x) + (y * other.y);
+}
+
+
+double Vector2D::CrossProduct(const Vector2D & other) const {
+	return (x * other.y) - (y * other.x);
 }
 
 
