@@ -8,24 +8,10 @@
 #undef max
 
 
-Vector2D::Vector2D(double X, double Y)
+Vector2D::Vector2D(double x, double y)
 {
-	this->x = X;
-	this->y = Y;
-}
-
-
-void Vector2D::SetVecor2D(const double& X, const double& Y)
-{
-	this->x = X;
-	this->y = Y;
-}
-
-
-void Vector2D::SetZero()
-{
-	this->x = 0.;
-	this->y = 0.;
+	this->x = x;
+	this->y = y;
 }
 
 

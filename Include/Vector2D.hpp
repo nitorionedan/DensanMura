@@ -4,11 +4,17 @@
 class Vector2D
 {
 public:
-	Vector2D(const double X, const double Y);
+	Vector2D(double x, double y);
 	Vector2D() {}
 
-	void SetVecor2D(const double& X, const double& Y);
-	void SetZero();
+	inline void SetVecor2D(const double& x, const double& y) {
+		this->x = x;
+		this->y = y;
+	}
+	inline void SetZero() {
+		x = 0.;
+		y = 0.;
+	}
 	void AddVec(Vector2D& vec);
 	void Fill(const double& XY);
 

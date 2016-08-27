@@ -20,7 +20,7 @@ private:
 	void Initialize() override;
 	bool HitCheck() override;	// プレイヤーの攻撃との当たり判定
 	void Move();				// 動きのみ
-	void Boundary(double* x, double* y);
+	void Boundary(double* x, double* y); // 座標を限界値に調整
 
 	std::unique_ptr<Image> img;
 	Vector2D shadowPos, vmove;
