@@ -87,7 +87,6 @@ void Player::Move()
 {
 	const bool& IS_GROUND = (pos.y >= shadowPos.y - 50 && isJump);
 
-	// とりあえず
 	vmove.SetZero();
 
 	if (isJump)	vec_jump -= GRAVITY;
@@ -95,9 +94,8 @@ void Player::Move()
 	if (Keyboard_Get(KEY_INPUT_C) == 1 && !isJump)
 	{
 		// ジャンプさせる
-		// @attention
-		//　自分の環境だと [↓] と [→] と [SPACE] または、
-		//　[↑] と [→]と[SPACE] の同時押しはハード上の制約でできなかった。
+		// @attention	自分の環境だと [↓] と [→] と [SPACE] または、
+		//				[↑] と [→]と[SPACE] の同時押しはハード上の制約でできなかった。
 		vec_jump = 20.;
 		isJump = true;
 		sound->PlayMem("jump", DX_PLAYTYPE_BACK);
@@ -116,18 +114,18 @@ void Player::Move()
 	// 歩きベクター
 	if (Keyboard_Get(KEY_INPUT_RIGHT) >= 1)	vmove.x = walkSpeed;
 	if (Keyboard_Get(KEY_INPUT_LEFT) >= 1)	vmove.x = -walkSpeed;
-	if (Keyboard_Get(KEY_INPUT_UP) >= 1)	vmove.y = walkSpeed;
-	if (Keyboard_Get(KEY_INPUT_DOWN) >= 1)	vmove.y = -walkSpeed;
+	if (Keyboard_Get(KEY_INPUT_UP) >= 1)	vmove.y = -walkSpeed;
+	if (Keyboard_Get(KEY_INPUT_DOWN) >= 1)	vmove.y = walkSpeed;
 
-	// 移動させる
-	if(isJump)	pos.y -= vec_jump + vmove.y;
-	shadowPos.x += vmove.x;
-	shadowPos.y -= vmove.y;
+	/* 移動させる */
+	if(isJump)
+		pos.y -= vec_jump + vmove.y;
+	shadowPos += vmove;
 
 	shadowPos.x = std::max(std::min(shadowPos.x, FLOOR_RIGHT), FLOOR_LEFT);
 	shadowPos.y = std::max(std::min(shadowPos.y, FLOOR_BOTTOM), FLOOR_TOP);
 
-	// 地面にいるとき
+	/* 地面にいるとき */
 	if (IS_GROUND)
 	{
 		pos.y = shadowPos.y - 50;

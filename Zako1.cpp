@@ -1,13 +1,13 @@
-#include "ZakoSample.hpp"
-#include "Graphics2D.hpp"
-#include "Keyboard.hpp"
+#include "Include/Zako1.hpp"
+#include "Include/Graphics2D.hpp"
+#include "Include/Keyboard.hpp"
 #include <cassert>
 #include <algorithm>
 #undef min
 #undef max
 
 
-ZakoSample::ZakoSample()
+Zako1::Zako1()
 	: img(new Image)
 	, Gravity(0.5)
 {
@@ -19,13 +19,13 @@ ZakoSample::ZakoSample()
 }
 
 
-ZakoSample::~ZakoSample()
+Zako1::~Zako1()
 {
 	for (auto i : gh)	DeleteGraph(i);
 }
 
 
-void ZakoSample::Initialize()
+void Zako1::Initialize()
 {
 	shadow.pos.SetVecor2D(320, 240);
 	pos.SetVecor2D(shadow.pos.x, shadow.pos.y - BD_BOTTOM_CHARA);
@@ -39,7 +39,7 @@ void ZakoSample::Initialize()
 }
 
 
-void ZakoSample::Update(const Player& player)
+void Zako1::Update(const Player& player)
 {
 	time++;
 
@@ -77,20 +77,20 @@ void ZakoSample::Update(const Player& player)
 }
 
 
-void ZakoSample::Draw()
+void Zako1::Draw()
 {
 	DrawAnime(pos.x, pos.y, 0., _countof(gh), 100, gh);
 	DrawCircle(shadow.pos.x, shadow.pos.y, 4, GetColor(255, 0, 0), TRUE);
 
 	/* TEST */
-	if(isJumping)
-		DrawFormatString(320, 240, GetColor(255, 0, 0), "jumping");
-	else
-		DrawFormatString(320, 240, GetColor(255, 0, 0), "not jumping");
+	//if (isJumping)
+	//	DrawFormatString(320, 240, GetColor(255, 0, 0), "jumping");
+	//else
+	//	DrawFormatString(320, 240, GetColor(255, 0, 0), "not jumping");
 }
 
 
-void ZakoSample::Move(const Vector2D& vec)
+void Zako1::Move(const Vector2D& vec)
 {
 	/* ストップ＆ゴー */
 	if (time % 120 == 0)
@@ -110,9 +110,12 @@ void ZakoSample::Move(const Vector2D& vec)
 		Jump();
 	}
 
-	/* プレイヤーに合わせる */
+	/* たまにプレイヤーに合わせる */
 	if (Keyboard_Get(KEY_INPUT_C) == 1 && isJumping == false)
-		GoTo(vec);
+	{
+		int tmp = GetRand(2);
+		if(tmp == 2)	GoTo(vec);
+	}
 
 	/* 重力による落下 */
 	if (isJumping)
@@ -124,7 +127,7 @@ void ZakoSample::Move(const Vector2D& vec)
 }
 
 
-void ZakoSample::GoTo(const Vector2D& vec)
+void Zako1::GoTo(const Vector2D& vec)
 {
 	Vector2D tmp = Vector2D::GetVec2(shadow.pos, vec);
 	shadow.vmove.x = tmp.Normalize().x * walkSpeed;
@@ -132,14 +135,14 @@ void ZakoSample::GoTo(const Vector2D& vec)
 }
 
 
-inline void ZakoSample::Boundary(double * x, double * y)
+inline void Zako1::Boundary(double * x, double * y)
 {
 	*x = std::max(std::min(*x, (double)BD_RIGHT), (double)BD_LEFT); // BD_RIGHt  <= x <= BD_LEFT
 	*y = std::max(std::min(*y, (double)BD_BOTTOM), (double)BD_TOP); // BD_BOTTOM <= y <= BD_TOP
 }
 
 
-void ZakoSample::Jump()
+void Zako1::Jump()
 {
 	if (isJumping)	return;
 
@@ -148,7 +151,7 @@ void ZakoSample::Jump()
 }
 
 
-bool ZakoSample::HitCheck()
+bool Zako1::HitCheck()
 {
 	return false;
 }

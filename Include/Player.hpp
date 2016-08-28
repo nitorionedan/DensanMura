@@ -7,7 +7,6 @@
 #include "Texture.hpp"
 #include "Image.hpp"
 #include "Sound.hpp"
-
 #include <memory>
 
 

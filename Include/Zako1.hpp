@@ -1,11 +1,13 @@
-#pragma once
+#ifndef DEF_ZAKO1_HPP
+#define DEF_ZAKO1_HPP
+
 #include "ZakoEnemy.hpp"
 #include "Image.hpp"
 #include "Vector2D.hpp"
 #include <memory>
 
 
-class ZakoSample : public ZakoEnemy
+class Zako1 : public ZakoEnemy
 {
 	struct Shadow
 	{
@@ -13,8 +15,8 @@ class ZakoSample : public ZakoEnemy
 	};
 
 public:
-	ZakoSample();
-	~ZakoSample();
+	Zako1();
+	~Zako1();
 	void Update(const Player& player) override;
 	void Draw() override;
 	Vector2D& GetPos() override {
@@ -42,3 +44,6 @@ private:
 	bool isMove;
 	bool isJumping;
 };
+
+
+#endif // !DEF_ZAKO1_HPP
