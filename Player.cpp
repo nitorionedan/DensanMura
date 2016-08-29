@@ -28,11 +28,11 @@ Player::~Player()
 
 void Player::Initialize()
 {
-	shadowPos.SetVecor2D(20., POS_Y_LIMIT);
-	pos.SetVecor2D(shadowPos.x, shadowPos.y - 50.);
+	shadowPos.SetVec(20., POS_Y_LIMIT);
+	pos.SetVec(shadowPos.x, shadowPos.y - 50.);
 	elapsedTime = 0;
 	vec_jump = 0.;
-	vmove.SetVecor2D(0., 0.);
+	vmove.SetVec(0., 0.);
 	isJump = false;
 	isLeft = false;
 }

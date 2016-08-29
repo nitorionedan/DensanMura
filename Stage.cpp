@@ -19,7 +19,7 @@ Stage::~Stage()
 
 void Stage::Initialize()
 {
-	pos.SetVecor2D(0., 0.);
+	pos.SetVec(0., 0.);
 	
 	int wid, hei;
 	img->GetSize("back", &wid, &hei);

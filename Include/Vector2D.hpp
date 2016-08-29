@@ -7,7 +7,7 @@ public:
 	Vector2D(double x, double y);
 	Vector2D() {}
 
-	inline void SetVecor2D(const double& x, const double& y) {
+	inline void SetVec(const double& x, const double& y) {
 		this->x = x;
 		this->y = y;
 	}

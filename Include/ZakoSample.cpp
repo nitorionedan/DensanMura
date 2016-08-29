@@ -27,8 +27,8 @@ ZakoSample::~ZakoSample()
 
 void ZakoSample::Initialize()
 {
-	shadow.pos.SetVecor2D(320, 240);
-	pos.SetVecor2D(shadow.pos.x, shadow.pos.y - BD_BOTTOM_CHARA);
+	shadow.pos.SetVec(320, 240);
+	pos.SetVec(shadow.pos.x, shadow.pos.y - BD_BOTTOM_CHARA);
 	shadow.vmove.SetZero();
 	vmove.SetZero();
 	time = 0;

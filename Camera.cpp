@@ -23,7 +23,7 @@ void Camera::Initialize()
 
 void Camera::Update(const double & PosX, const double & PosY)
 {
-	pos.SetVecor2D(PosX, 0.);
+	pos.SetVec(PosX, 0.);
 }
 
 

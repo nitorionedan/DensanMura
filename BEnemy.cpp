@@ -20,8 +20,8 @@ BEnemy::~BEnemy()
 
 void BEnemy::Initialize()
 {
-	shadowPos.SetVecor2D(450., 380.);
-	pos.SetVecor2D(450., 300.);
+	shadowPos.SetVec(450., 380.);
+	pos.SetVec(450., 300.);
 	c_move = 0.f;
 }
 
