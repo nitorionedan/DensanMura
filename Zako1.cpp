@@ -21,7 +21,8 @@ Zako1::Zako1()
 
 Zako1::~Zako1()
 {
-	for (auto i : gh)	DeleteGraph(i);
+	for (auto i : gh)
+		DeleteGraph(i);
 }
 
 
@@ -44,16 +45,17 @@ void Zako1::Update(const Player& player)
 	time++;
 
 	/* 動いていたらisMoveを立てる */
-	if (shadow.vmove.x != 0. || shadow.vmove.y != 0.)
+	const bool& IsMoving = (shadow.vmove.x != 0. || shadow.vmove.y != 0.);
+	if (IsMoving)
 		isMove = true;
 	else
 		isMove = false;
 
 	Move(player.GetPos());
 
+	/* キャラの位置を調整 */
 	const double& Bottom = (shadow.pos.y - BD_BOTTOM_CHARA);
 
-	/* キャラの位置を調整 */
 	pos.x = shadow.pos.x;
 	if (isJumping)
 		pos.y = std::min(Bottom, pos.y);
@@ -79,7 +81,7 @@ void Zako1::Update(const Player& player)
 
 void Zako1::Draw()
 {
-	DrawAnime(pos.x, pos.y, 0., _countof(gh), 100, gh);
+	DrawAnime(pos.x, pos.y, 0., time, _countof(gh), 100, gh);
 	DrawCircle(shadow.pos.x, shadow.pos.y, 4, GetColor(255, 0, 0), TRUE);
 
 	/* TEST */
@@ -120,6 +122,9 @@ void Zako1::Move(const Vector2D& vec)
 	/* 重力による落下 */
 	if (isJumping)
 		vmove.y += Gravity; // 下方向
+
+	/* 壁で止まる */
+	/// TODO:必要があれば
 
 	/* ベクトル加算 */
 	shadow.pos += shadow.vmove;
