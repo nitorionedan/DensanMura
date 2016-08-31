@@ -1,3 +1,7 @@
+/*
+@brief	Zako1ƒNƒ‰ƒX
+@author	–î“`
+*/
 #ifndef DEF_ZAKO1_HPP
 #define DEF_ZAKO1_HPP
 
@@ -32,6 +36,8 @@ private:
 	void Jump();
 
 	static const int BD_BOTTOM_CHARA = 40;
+	int const Jump_interval;
+	int const Move_interval;
 	const double Gravity;
 
 	std::unique_ptr<Image> img;

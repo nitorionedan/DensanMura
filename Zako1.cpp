@@ -1,3 +1,7 @@
+/*
+@brief	Zako1.hppの実装
+@author	矢伝
+*/
 #include "Include/Zako1.hpp"
 #include "Include/Graphics2D.hpp"
 #include "Include/Keyboard.hpp"
@@ -10,6 +14,8 @@
 Zako1::Zako1()
 	: img(new Image)
 	, Gravity(0.5)
+	, Move_interval(120)
+	, Jump_interval(180)
 {
 	gh[0] = LoadGraph("Images/Characters/zako1_1.png");
 	gh[1] = LoadGraph("Images/Characters/zako1_2.png");
@@ -55,7 +61,6 @@ void Zako1::Update(const Player& player)
 
 	/* キャラの位置を調整 */
 	const double& Bottom = (shadow.pos.y - BD_BOTTOM_CHARA);
-
 	pos.x = shadow.pos.x;
 	if (isJumping)
 		pos.y = std::min(Bottom, pos.y);
@@ -95,7 +100,8 @@ void Zako1::Draw()
 void Zako1::Move(const Vector2D& vec)
 {
 	/* ストップ＆ゴー */
-	if (time % 120 == 0)
+	const bool& MoveTime = (time % Move_interval == 0);
+	if (MoveTime)
 	{
 		walkSpeed = GetRand(3) + 1;
 
@@ -106,18 +112,19 @@ void Zako1::Move(const Vector2D& vec)
 	}
 
 	/* ジャンプ */
-	if (time % 180 == 0)
+	const bool& JumpTime = (time % Jump_interval == 0);
+	if (JumpTime)
 	{
 		jumpPower = -GetRand(6) - 10;
 		Jump();
 	}
 
 	/* たまにプレイヤーに合わせる */
-	if (Keyboard_Get(KEY_INPUT_C) == 1 && isJumping == false)
-	{
-		int tmp = GetRand(2);
-		if(tmp == 2)	GoTo(vec);
-	}
+	const bool& IsFollowToPlayer = (Keyboard_Get(KEY_INPUT_C) == 1 &&	// プレイヤーがジャンプするとき
+									isJumping == false &&				// ジャンプしていないとき
+									GetRand(2) == 2);					// ３分の１の確率で
+	if (IsFollowToPlayer)
+		GoTo(vec);
 
 	/* 重力による落下 */
 	if (isJumping)

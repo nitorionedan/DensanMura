@@ -1,4 +1,9 @@
+/*
+@brief	Zako2ƒNƒ‰ƒX
+@author	‹g‘º
+*/
 #pragma once
+
 #include "ZakoEnemy.hpp"
 #include "Image.hpp"
 #include "Vector2D.hpp"

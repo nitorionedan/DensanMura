@@ -1,3 +1,8 @@
+/*
+@brief	Zako2.hpp‚ÌŽÀ‘•
+@author	‹g‘º
+*/
+
 #include "Include\Zako2.hpp"
 #include "Include\Game.hpp"
 #include <cassert>
