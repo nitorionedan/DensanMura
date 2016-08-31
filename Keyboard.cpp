@@ -36,3 +36,13 @@ void Keyboard_Update()
 int Keyboard_Get(int KeyCode){
 	return m_Key[KeyCode];		  // KeyCode‚Ì“ü—Íó‘Ô‚ğ•Ô‚·
 }
+
+
+bool KeyPush(int KeyCode){
+	return (m_Key[KeyCode] == 1) ? true : false;
+}
+
+
+bool KeyDown(int KeyCode){
+	return (m_Key[KeyCode] >= 1) ? true : false;
+}
