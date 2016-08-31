@@ -23,6 +23,10 @@ bool KeyPush(int KeyCode);
 // ‰Ÿ‚µ‘±‚¯‚é‚Æ‚«
 bool KeyDown(int KeyCode);
 
+bool KeyIsVertical();
+
+bool KeyIsHorizontal();
+
 #endif
 
 // EOF

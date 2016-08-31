@@ -46,3 +46,19 @@ bool KeyPush(int KeyCode){
 bool KeyDown(int KeyCode){
 	return (m_Key[KeyCode] >= 1) ? true : false;
 }
+
+
+bool KeyIsVertical()
+{
+	const bool& Is_Vertical = (m_Key[KEY_INPUT_UP] >= 1 ||
+							   m_Key[KEY_INPUT_DOWN] >= 1);
+	return Is_Vertical;
+}
+
+
+bool KeyIsHorizontal()
+{
+	const bool& Is_Horizontal = (m_Key[KEY_INPUT_LEFT] >= 1 ||
+							   m_Key[KEY_INPUT_RIGHT] >= 1);
+	return Is_Horizontal;
+}

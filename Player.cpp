@@ -62,11 +62,10 @@ void Player::Draw()
 	// ‰e
 	const double& VEC_JUMP = std::fabs(vec_jump);
 
-	if (isJump){
+	if (isJump)
 		img->DrawRota(shadowPos.x, shadowPos.y, 1. - (20. - VEC_JUMP) / 20., 0., "shadow", true);
-	}else{
+	else
 		img->DrawRota(shadowPos.x, shadowPos.y, 1., 0., "shadow", true);
-	}
 
 	img->DrawRota(pos.x, pos.y, 1., 0., "player",true, !isLeft);
 
