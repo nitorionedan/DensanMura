@@ -120,9 +120,9 @@ void Zako1::Move(const Vector2D& vec)
 	}
 
 	/* たまにプレイヤーに合わせる */
-	const bool& IsFollowToPlayer = (Keyboard_Get(KEY_INPUT_C) == 1 &&	// プレイヤーがジャンプするとき
-									isJumping == false &&				// ジャンプしていないとき
-									GetRand(2) == 2);					// ３分の１の確率で
+	const bool& IsFollowToPlayer = (KeyPush(KEY_INPUT_C) &&	// プレイヤーがジャンプするとき
+									isJumping == false &&	// ジャンプしていないとき
+									GetRand(2) == 2);		// ３分の１の確率で
 	if (IsFollowToPlayer)
 		GoTo(vec);
 

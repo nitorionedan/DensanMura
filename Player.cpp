@@ -48,12 +48,12 @@ void Player::Update()
 
 	// 人の追従
 	pos.x = shadowPos.x;
-	if (!isJump)	pos.y = shadowPos.y - 50.;
+	if (!isJump)
+		pos.y = shadowPos.y - 50.;
 
 	// プレイヤーの向きを変更
-	if (Keyboard_Get(KEY_INPUT_RIGHT) >= 1)	isLeft = false;
-	
-	if (Keyboard_Get(KEY_INPUT_LEFT) >= 1)	isLeft = true;
+	if (KeyDown(KEY_INPUT_RIGHT))	isLeft = false;	
+	if (KeyDown(KEY_INPUT_LEFT))	isLeft = true;
 }
 
 
@@ -91,7 +91,7 @@ void Player::Move()
 
 	if (isJump)	vec_jump -= GRAVITY;
 
-	if (Keyboard_Get(KEY_INPUT_C) == 1 && !isJump)
+	if (KeyPush(KEY_INPUT_C) && isJump == false)
 	{
 		// ジャンプさせる
 		// @attention	自分の環境だと [↓] と [→] と [SPACE] または、
@@ -103,19 +103,17 @@ void Player::Move()
 
 	// 移動ベクトル補正（TODO:有無の議論）
 	double walkSpeed = WALK_SPEED;
-	if(Keyboard_Get(KEY_INPUT_LEFT) >= 1 || Keyboard_Get(KEY_INPUT_RIGHT) >= 1)
+	if(KeyDown(KEY_INPUT_LEFT) || KeyDown(KEY_INPUT_RIGHT))
 	{
-		if (Keyboard_Get(KEY_INPUT_UP) >= 1 || Keyboard_Get(KEY_INPUT_DOWN) >= 1)
-		{
+		if (KeyDown(KEY_INPUT_UP) || KeyDown(KEY_INPUT_DOWN))
 			walkSpeed = walkSpeed / 1.7;
-		}
 	}
 
 	// 歩きベクター
-	if (Keyboard_Get(KEY_INPUT_RIGHT) >= 1)	vmove.x = walkSpeed;
-	if (Keyboard_Get(KEY_INPUT_LEFT) >= 1)	vmove.x = -walkSpeed;
-	if (Keyboard_Get(KEY_INPUT_UP) >= 1)	vmove.y = -walkSpeed;
-	if (Keyboard_Get(KEY_INPUT_DOWN) >= 1)	vmove.y = walkSpeed;
+	if (KeyDown(KEY_INPUT_RIGHT))	vmove.x = walkSpeed;
+	if (KeyDown(KEY_INPUT_LEFT))	vmove.x = -walkSpeed;
+	if (KeyDown(KEY_INPUT_UP))		vmove.y = -walkSpeed;
+	if (KeyDown(KEY_INPUT_DOWN))	vmove.y = walkSpeed;
 
 	/* 移動させる */
 	if(isJump)

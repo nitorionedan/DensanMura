@@ -14,7 +14,7 @@ Game::Game(ISceneChanger * changer)
 	, prcn(new BEnemy)
 	, stage(new Stage)
 	, mEveMsg(new EventMessage)
-	, mZakoTask(new ZakoEnemyTask(eZako::Zako2))
+	, mZakoTask(new ZakoEnemyTask(eZako::Zako1))
 {
 	Initialize();
 }
@@ -39,18 +39,17 @@ void Game::Finalize()
 
 void Game::Update()
 {
-	if (Keyboard_Get(KEY_INPUT_Q) == 1)	isPause = !isPause;
-	if (Keyboard_Get(KEY_INPUT_F1) == 1)
+	if (KeyPush(KEY_INPUT_Q))
+		isPause = !isPause;
+	if (KeyPush(KEY_INPUT_F1))
 	{
 		int dmg = GetRand(100);
 
 		mEveMsg->SendMsg(GetRand(60) - 30, GetRand(60) - 60,
 			GetColor(255, 0, 0), std::to_string(dmg));
 	}
-	if (Keyboard_Get(KEY_INPUT_H) == 1)
-	{
+	if (KeyPush(KEY_INPUT_H))
 		mEveMsg->SendMsg("Hello");
-	}
 	
 	if (isPause)	return;
 
