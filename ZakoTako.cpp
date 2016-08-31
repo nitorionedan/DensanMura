@@ -61,13 +61,7 @@ void ZakoTako::Move()
 	bool ismoveY = true;
 
 	//ÉÇÅ[ÉhïœçX
-	/*if (Keyboard_Get(KEY_INPUT_RIGHT) |	Keyboard_Get(KEY_INPUT_LEFT) |
-		Keyboard_Get(KEY_INPUT_UP) | Keyboard_Get(KEY_INPUT_DOWN))
-		Tmode = Tescape;
-	else
-		Tmode = Tfollow;*/
-	if (KeyIsVertical() |
-		KeyIsHorizontal())
+	if (KeyIsVertical() | KeyIsHorizontal())
 		Tmode = Tescape;
 	else
 		Tmode = Tfollow;

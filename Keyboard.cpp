@@ -59,6 +59,6 @@ bool KeyIsVertical()
 bool KeyIsHorizontal()
 {
 	const bool& Is_Horizontal = (m_Key[KEY_INPUT_LEFT] >= 1 ||
-							   m_Key[KEY_INPUT_RIGHT] >= 1);
+							     m_Key[KEY_INPUT_RIGHT] >= 1);
 	return Is_Horizontal;
 }
