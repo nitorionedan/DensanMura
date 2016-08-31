@@ -49,7 +49,7 @@ void ZakoTako::Update(const Player& player)
 
 void ZakoTako::Draw()
 {
-	img->Draw(pos.x, pos.y, "idle_2", true);
+	img->DrawRota(pos.x, pos.y, 1., 0., "idle_2", true);
 }
 
 
@@ -73,19 +73,19 @@ void ZakoTako::Move()
 		walk_speed = TFOLLW_SPEED;
 
 		if (PlaX > pos.x + walk_speed) {
-			if (pos.x< 640 - TAKO_SIZE_X) pos.x += walk_speed;
+			if (pos.x < BD_RIGHT) pos.x += walk_speed;
 		}
 		else if (PlaX < pos.x - walk_speed) {
-			if (pos.x>0) pos.x -= walk_speed;
+			if (pos.x > BD_LEFT) pos.x -= walk_speed;
 		}
 		else
 			ismoveX = false;
 
 		if (PlaY >pos.y + walk_speed) {
-			if (pos.y<480 - TAKO_SIZE_Y)pos.y += walk_speed;
+			if (pos.y < BD_BOTTOM)	pos.y += walk_speed;
 		}
 		else if (PlaY < pos.y - walk_speed) {
-			if (pos.y>0) pos.y -= walk_speed;
+			if (pos.y > BD_TOP) pos.y -= walk_speed;
 		}
 		else
 			ismoveY = false;
@@ -95,19 +95,21 @@ void ZakoTako::Move()
 		walk_speed = TESCAPE_SPEED;
 
 		if (PlaX > pos.x + walk_speed) {
-			if (pos.x>0) pos.x -= walk_speed;
+			if (pos.x > BD_LEFT) pos.x -= walk_speed;
 		}
 		else if (PlaX < pos.x - walk_speed) {
-			if (pos.x< 640 - TAKO_SIZE_X) pos.x += walk_speed;
+			//if (pos.x < 640 - TAKO_SIZE_X) pos.x += walk_speed;
+			if (pos.x < BD_RIGHT)	pos.x += walk_speed;
 		}
 		else
 			ismoveX = false;
 
-		if (PlaY >pos.y + walk_speed) {
-			if (pos.y>50) pos.y -= walk_speed;
+		if (PlaY > pos.y + walk_speed) {
+			if (pos.y > BD_TOP) pos.y -= walk_speed;
 		}
 		else if (PlaY < pos.y - walk_speed) {
-			if (pos.y<480 - TAKO_SIZE_Y) pos.y += walk_speed;
+			//if (pos.y < 480 - TAKO_SIZE_Y) pos.y += walk_speed;
+			if (pos.y < BD_BOTTOM)	pos.y += walk_speed;
 		}
 		else
 			ismoveY = false;
