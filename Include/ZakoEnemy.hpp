@@ -10,7 +10,7 @@ public:
 	virtual ~ZakoEnemy(){}
 	virtual void Update(const Player& player) = 0;
 	virtual void Draw() = 0;
-	virtual Vector2D& GetPos() = 0;
+	virtual const Vector2D& GetPos() const = 0;
 	virtual bool HitCheck() = 0; // ƒvƒŒƒCƒ„[‚ÌUŒ‚‚Æ‚Ì“–‚½‚è”»’è
 
 protected:

@@ -17,9 +17,9 @@ class Zako1 : public ZakoEnemy
 public:
 	Zako1();
 	~Zako1();
-	void Update(const Player& player) override;
-	void Draw() override;
-	Vector2D& GetPos() override {
+	virtual void Update(const Player& player) override;
+	virtual void Draw() override;
+	virtual const Vector2D& GetPos() const override {
 		return pos;
 	}
 

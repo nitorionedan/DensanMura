@@ -14,7 +14,7 @@ Game::Game(ISceneChanger * changer)
 	, prcn(new BEnemy)
 	, stage(new Stage)
 	, mEveMsg(new EventMessage)
-	, mZakoTask(new ZakoEnemyTask(eZako::Zako1))
+	, mZakoTask(new ZakoEnemyTask(eZako::Zako2))
 {
 	Initialize();
 }
